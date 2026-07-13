@@ -1,6 +1,6 @@
 # Data Science Portfolio
 
-Static portfolio for a Data Science student at Universitat Politecnica de Valencia. It presents six reproducible, public case studies covering data engineering, geospatial analysis, operations research, forecasting, governed machine learning, and NLP retrieval.
+Static portfolio for Lianghao Zhan, a Data Science student at Universitat Politecnica de Valencia. It presents six reproducible, public case studies covering data engineering, geospatial analysis, operations research, forecasting, governed machine learning, and NLP retrieval.
 
 This site deliberately distinguishes observed results from modeled scenarios. It does not claim commercial deployments or company work.
 
@@ -9,6 +9,8 @@ This site deliberately distinguishes observed results from modeled scenarios. It
 - Astro 5 and TypeScript
 - Static HTML and modern CSS
 - Structured project data for reusable case-study pages
+- Filterable project cards and a synchronized evidence index
+- SEO metadata and structured `Person` data without publishing private contact details
 - GitHub Actions for type checking and production builds
 
 ## Local setup

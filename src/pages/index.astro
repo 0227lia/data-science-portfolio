@@ -6,6 +6,7 @@ import { projectCategories, projects } from "../data/projects";
 const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
+const linkedinUrl = "https://www.linkedin.com/in/0227lia/";
 ---
 
 <BaseLayout
@@ -13,26 +14,34 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
   description="A Data Science portfolio featuring reproducible work in Valencia mobility, data engineering, geospatial equity, electricity forecasting, NLP retrieval and governed machine learning."
 >
   <section class="hero" aria-labelledby="hero-title">
-    <img class="hero-media" src={`${basePath}assets/valencia-bike-equity-dashboard.png`} alt="" width="1600" height="900" fetchpriority="high" />
+    <img class="hero-media" src={`${basePath}assets/valencia-air-quality-observability-scorecard.png`} alt="" width="1600" height="900" fetchpriority="high" />
     <div class="hero-scrim"></div>
     <div class="shell hero-content">
-      <p class="eyebrow hero-eyebrow">Data science | Valencia</p>
-      <h1 id="hero-title">Data Science Portfolio</h1>
-      <p class="hero-copy">Reproducible case studies in data engineering, urban analytics, operations research, NLP retrieval, forecasting and governed machine learning.</p>
-      <p class="hero-context">Data Science student at Universitat Politecnica de Valencia, seeking an internship in Valencia, hybrid or remote within Spain.</p>
-      <a class="primary-link" href="#projects">Explore the work</a>
+      <p class="eyebrow hero-eyebrow">Data science portfolio · Universitat Politecnica de Valencia</p>
+      <h1 id="hero-title">Lianghao Zhan</h1>
+      <p class="hero-copy">Reproducible public-data projects in data engineering, urban analytics, forecasting, NLP retrieval and machine learning.</p>
+      <p class="hero-context">Data Science student seeking an internship in Valencia, hybrid or remote within Spain.</p>
+      <ul class="hero-meta" aria-label="Portfolio summary">
+        <li><strong>06</strong><span>case studies</span></li>
+        <li><strong>Public data</strong><span>documented sources</span></li>
+        <li><strong>Reviewable</strong><span>code, tests and limits</span></li>
+      </ul>
+      <div class="hero-actions">
+        <a class="primary-link" href="#projects">Review case studies</a>
+        <a class="hero-link" href={linkedinUrl} target="_blank" rel="noreferrer">Open LinkedIn</a>
+      </div>
     </div>
-    <a class="hero-next" href="#projects">Six public case studies</a>
+    <a class="hero-next" href="#evidence-index">Evidence index · 06 systems</a>
   </section>
 
   <section class="statement-section" aria-labelledby="statement-title">
     <div class="shell statement-layout">
       <div>
         <p class="eyebrow">Working principle</p>
-        <h2 id="statement-title">Evidence before polish.</h2>
+        <h2 id="statement-title">Work that can be inspected, not just described.</h2>
       </div>
       <div class="statement-copy">
-        <p>Each project has a defined question, documented data source, executable pipeline, real metrics and an explicit boundary around what the output does not prove.</p>
+        <p>Each project has a defined question, documented data source, executable pipeline, measured outputs and an explicit boundary around what the output does not prove.</p>
         <p>These are portfolio studies over public data. They are not presented as work delivered for companies or as deployed production systems.</p>
       </div>
     </div>
@@ -42,7 +51,7 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
     <div class="shell section-heading-row">
       <div>
         <p class="eyebrow">Selected work</p>
-        <h2 id="projects-title">Six systems, six analytical lenses.</h2>
+        <h2 id="projects-title">Six projects built around data decisions.</h2>
       </div>
       <p class="section-intro">Filter by domain or search the methods and artifacts used in each case study.</p>
     </div>
@@ -65,6 +74,50 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
       {projects.map((project) => <ProjectCard project={project} />)}
     </div>
     <p class="shell empty-state" id="empty-state" hidden>No project matches these filters.</p>
+  </section>
+
+  <section id="evidence-index" class="evidence-index" aria-labelledby="evidence-index-title">
+    <div class="shell section-heading-row">
+      <div>
+        <p class="eyebrow">Portfolio index</p>
+        <h2 id="evidence-index-title">A compact evidence ledger.</h2>
+      </div>
+      <p id="evidence-index-note" class="section-intro">The same filters above update this table. Values are pulled from committed project runs and link back to the corresponding case study or repository.</p>
+    </div>
+    <div class="shell evidence-table-wrap" tabindex="0" aria-label="Scrollable project evidence table">
+      <table class="evidence-table" aria-describedby="evidence-index-note">
+        <thead>
+          <tr>
+            <th scope="col">Case study</th>
+            <th scope="col">Decision lens</th>
+            <th scope="col">Measured evidence</th>
+            <th scope="col">Technical artifacts</th>
+            <th scope="col">Review</th>
+          </tr>
+        </thead>
+        <tbody>
+          {projects.map((project) => (
+            <tr
+              data-project-row
+              data-categories={project.categories.join("|")}
+              data-search={`${project.title} ${project.description} ${project.categories.join(" ")} ${project.technologies.join(" ")}`.toLowerCase()}
+            >
+              <td>
+                <a class="table-project" href={`${basePath}projects/${project.slug}/`}>{project.title}</a>
+                <span>{project.eyebrow}</span>
+              </td>
+              <td>{project.categories.slice(0, 2).join(" · ")}</td>
+              <td>
+                <strong>{project.metrics[1].value}</strong>
+                <span>{project.metrics[1].label}</span>
+              </td>
+              <td>{project.technologies.slice(0, 3).join(" · ")}</td>
+              <td><a class="table-link" href={project.githubUrl} target="_blank" rel="noreferrer">Repository</a></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section class="evidence-band" aria-labelledby="evidence-title">
@@ -121,7 +174,7 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
     </div>
   </section>
 
-  <section class="closing-section" aria-labelledby="closing-title">
+  <section id="contact" class="closing-section" aria-labelledby="closing-title">
     <div class="shell closing-layout">
       <div>
         <p class="eyebrow">Availability</p>
@@ -129,7 +182,10 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
       </div>
       <div>
         <p>Open to roles in data analysis, data science, machine learning, business intelligence, automation and junior data engineering in Valencia, hybrid or remote in Spain.</p>
-        <a class="primary-link primary-link-dark" href="https://github.com/0227lia" target="_blank" rel="noreferrer">Open GitHub profile</a>
+        <div class="closing-actions">
+          <a class="primary-link primary-link-dark" href={linkedinUrl} target="_blank" rel="noreferrer">Connect on LinkedIn</a>
+          <a class="secondary-link" href="https://github.com/0227lia" target="_blank" rel="noreferrer">Review GitHub</a>
+        </div>
       </div>
     </div>
   </section>

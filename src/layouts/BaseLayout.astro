@@ -15,6 +15,20 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
+const socialLinks = ["https://github.com/0227lia", "https://www.linkedin.com/in/0227lia/"];
+const socialImage = new URL(`${basePath}assets/valencia-air-quality-observability-scorecard.png`, Astro.site);
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Lianghao Zhan",
+  url: canonicalUrl.href,
+  sameAs: socialLinks,
+  affiliation: {
+    "@type": "CollegeOrUniversity",
+    name: "Universitat Politècnica de València"
+  },
+  knowsAbout: ["Data science", "Data engineering", "Machine learning", "SQL", "Data visualization"]
+});
 ---
 
 <!doctype html>
@@ -30,6 +44,9 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json" is:inline set:html={structuredData}></script>
     <title>{title}</title>
   </head>
   <body>
@@ -37,13 +54,13 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
     <header class="site-header">
       <div class="shell nav-shell">
         <a class="wordmark" href={basePath} aria-label="Data Science Portfolio home">
-          <span class="wordmark-mark">DS</span>
-          <span>Portfolio</span>
+          <span class="wordmark-mark">LZ</span>
+          <span>Lianghao Zhan</span>
         </a>
         <nav aria-label="Main navigation">
-          <a href={`${basePath}#projects`}>Projects</a>
-          <a href={`${basePath}#practice`}>Practice</a>
-          <a href="https://github.com/0227lia" target="_blank" rel="noreferrer">GitHub</a>
+          <a href={`${basePath}#projects`}>Work</a>
+          <a href={`${basePath}#evidence-index`}>Evidence</a>
+          <a href={`${basePath}#contact`}>Contact</a>
         </nav>
       </div>
     </header>
@@ -53,11 +70,12 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
     <footer class="site-footer">
       <div class="shell footer-layout">
         <div>
-          <p class="footer-title">Data Science Portfolio</p>
+          <p class="footer-title">Lianghao Zhan · Data Science Portfolio</p>
           <p>Student work built from public data, reproducible pipelines and explicit limitations.</p>
         </div>
         <div class="footer-links">
           <a href="https://github.com/0227lia" target="_blank" rel="noreferrer">GitHub profile</a>
+          <a href="https://www.linkedin.com/in/0227lia/" target="_blank" rel="noreferrer">LinkedIn</a>
           <a href="https://github.com/0227lia/0227lia" target="_blank" rel="noreferrer">Profile README</a>
         </div>
       </div>

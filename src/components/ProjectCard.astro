@@ -24,6 +24,7 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
     <ul class="tag-list" aria-label={`${project.title} categories`}>
       {project.categories.map((category) => <li>{category}</li>)}
     </ul>
+    <p class="project-source"><span>Public data</span> <a href={project.sourceUrl} target="_blank" rel="noreferrer">{project.sourceName}</a></p>
     <dl class="compact-metrics">
       {project.metrics.slice(0, 2).map((metric) => (
         <div>
