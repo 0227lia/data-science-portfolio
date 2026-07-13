@@ -255,6 +255,52 @@ export const projects: Project[] = [
       "Twenty manual labels support regression testing but do not establish universal user-search quality.",
       "Rank scores do not validate the contents, freshness or reuse conditions of linked data resources."
     ]
+  },
+  {
+    slug: "valencia-air-quality-lakehouse",
+    title: "Valencia Air Quality Lakehouse",
+    eyebrow: "Data engineering and SQL",
+    description:
+      "A reproducible DuckDB warehouse for Valencia public air-quality data, with source contracts, observability controls, SQL marts, API and dashboard.",
+    summary:
+      "Turns a large, wide municipal CSV into a documented analytical warehouse without hiding coverage gaps or range-screen warnings.",
+    image: "/assets/valencia-air-quality-observability-scorecard.png",
+    imageAlt: "Observability scorecard with station-hour availability and data-quality controls.",
+    githubUrl: "https://github.com/0227lia/valencia-air-quality-lakehouse",
+    sourceName: "Valencia Open Data hourly air-quality distribution",
+    sourceUrl: "https://opendata.vlci.valencia.es/dataset/hourly-air-quality-data-since-2016",
+    categories: ["Data engineering", "SQL", "Data quality"],
+    technologies: ["Python", "DuckDB", "SQL", "FastAPI", "Streamlit", "Docker"],
+    metrics: [
+      { value: "449k", label: "station-hour rows in snapshot" },
+      { value: "6.04M", label: "long-format measurements" },
+      { value: "12", label: "publisher station labels" },
+      { value: "22", label: "versioned metrics" }
+    ],
+    challenge:
+      "Public environmental data often arrives as a large wide CSV. The project asks how to make it reusable for analysis while keeping source provenance, completeness and suspicious values visible rather than silently cleaning them away.",
+    approach: [
+      "Stream the official source with an atomic download, HTTP metadata and a SHA-256 manifest while keeping the raw 47.9 MB CSV out of Git.",
+      "Validate Spanish source headers and a reviewed metric catalog before loading a typed DuckDB staging table.",
+      "Build station, calendar and metric dimensions, then unpivot the source into a 6.04 million-row long measurement fact through versioned SQL.",
+      "Materialize coverage, completeness, daily trends, monitoring-gap and range-screen marts for analysts, an API and an interactive dashboard.",
+      "Exercise the same transformation against a labelled synthetic fixture in pytest and GitHub Actions, including a Docker build."
+    ],
+    evidence: [
+      "The committed 2026-07-13 source manifest records a 449,026-row snapshot from 2016-01-01 through 2021-12-31, across 12 publisher station labels and 22 metrics.",
+      "Four hard source controls pass: rows are nonempty, station-hours parse, station labels exist and no duplicate station-hour keys are found.",
+      "One warning is explicit rather than suppressed: 320 values fall outside broad engineering ranges, split across radiation (198), humidity (63) and noise (59)."
+    ],
+    quality: [
+      "The project stores a source hash and concise manifest without publishing the raw CSV or local warehouse.",
+      "Range screening is materialized as its own SQL mart and API response, so data-quality uncertainty remains inspectable.",
+      "Ruff, pytest, dependency checks, a fixture rebuild and a Docker build pass in GitHub Actions."
+    ],
+    limitations: [
+      "The warehouse is a reproducible snapshot, not a live municipal monitoring service.",
+      "Range screens are engineering controls, not legal thresholds or health guidance.",
+      "Published coverage does not prove sensor calibration, scientific validity or the cause of observed changes."
+    ]
   }
 ];
 
