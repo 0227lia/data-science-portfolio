@@ -1,6 +1,6 @@
 # Data Science Portfolio
 
-Static portfolio for a Data Science student at Universitat Politecnica de Valencia. It presents four reproducible, public case studies covering geospatial analysis, operations research, forecasting, and governed machine learning.
+Static portfolio for a Data Science student at Universitat Politecnica de Valencia. It presents five reproducible, public case studies covering geospatial analysis, operations research, forecasting, governed machine learning, and NLP retrieval.
 
 This site deliberately distinguishes observed results from modeled scenarios. It does not claim commercial deployments or company work.
 

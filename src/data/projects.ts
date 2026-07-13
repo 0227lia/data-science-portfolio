@@ -209,6 +209,52 @@ export const projects: Project[] = [
       "Cost units are a transparent analytical scenario, not observed company economics.",
       "PSI signals distribution change but does not by itself prove a performance decline."
     ]
+  },
+  {
+    slug: "valencia-open-data-navigator",
+    title: "Valencia Open Data Navigator",
+    eyebrow: "NLP retrieval and open data",
+    description:
+      "A hybrid retrieval system for a versioned Valencia CKAN catalog, with benchmarked ranking, API and an interactive discovery interface.",
+    summary:
+      "Combines lexical and latent-semantic signals to make multilingual municipal metadata easier to inspect without hiding the ranking trade-offs.",
+    image: "/assets/valencia-open-data-retrieval-scorecard.png",
+    imageAlt: "Benchmark scorecard comparing lexical, semantic and hybrid retrieval strategies.",
+    githubUrl: "https://github.com/0227lia/valencia-open-data-navigator",
+    sourceName: "Valencia Open Data CKAN catalog",
+    sourceUrl: "https://opendata.vlci.valencia.es/api/3/action/package_search",
+    categories: ["NLP", "Information retrieval", "Open data"],
+    technologies: ["Python", "scikit-learn", "FastAPI", "Streamlit", "TF-IDF", "pytest"],
+    metrics: [
+      { value: "296", label: "datasets in versioned snapshot" },
+      { value: "20", label: "manual relevance queries" },
+      { value: "0.793", label: "best MRR@10 (BM25)" },
+      { value: "0.975", label: "best Recall@5 (hybrid)" }
+    ],
+    challenge:
+      "A municipal catalog is often multilingual, unevenly tagged and difficult to navigate with a short information need. The project asks how to improve metadata discovery while keeping the ranking logic and its limits visible.",
+    approach: [
+      "Fetch all public packages from the official CKAN endpoint and keep a compact metadata snapshot with a SHA-256 manifest.",
+      "Validate required fields, duplicate slugs and declared resources before indexing the corpus.",
+      "Normalize Spanish and Valencian text, then compare BM25 with word-and-character TF-IDF reduced through latent semantic analysis.",
+      "Fuse lexical and semantic rank positions with reciprocal-rank fusion, and apply MMR only when a diverse top result set is useful.",
+      "Evaluate all strategies against 20 versioned, manually curated discovery queries before serving results through Streamlit and FastAPI."
+    ],
+    evidence: [
+      "The included 2026-07-13 snapshot contains 296 datasets, 1,184 declared resources and no duplicate slugs or missing titles.",
+      "BM25 has the strongest MRR@10 (0.793) and nDCG@10 (0.832) on the small benchmark; the hybrid strategy achieves the highest Recall@5 (0.975).",
+      "Hybrid MMR preserves the top-five recall but slightly reduces nDCG, an explicit trade-off for diversity rather than a claim of universal improvement."
+    ],
+    quality: [
+      "The pipeline validates labels against the snapshot before evaluation and can rebuild reports without a network request.",
+      "Each API result includes BM25, LSA and RRF components plus matched normalized terms.",
+      "Pytest, Ruff, dependency checks and GitHub Actions cover retrieval, labels, API contracts and offline reconstruction."
+    ],
+    limitations: [
+      "The corpus is a snapshot, not a live or official search index.",
+      "Twenty manual labels support regression testing but do not establish universal user-search quality.",
+      "Rank scores do not validate the contents, freshness or reuse conditions of linked data resources."
+    ]
   }
 ];
 
