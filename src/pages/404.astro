@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const basePath = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+---
+
+<BaseLayout title="Page not found | Data Science Portfolio" description="The requested portfolio page does not exist.">
+  <section class="not-found">
+    <div class="shell">
+      <p class="eyebrow">404</p>
+      <h1>That case study is not here.</h1>
+      <p>Return to the portfolio overview to browse the available public projects.</p>
+      <a class="primary-link primary-link-dark" href={basePath}>Return home</a>
+    </div>
+  </section>
+</BaseLayout>

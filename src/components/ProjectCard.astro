@@ -1,0 +1,40 @@
+---
+import type { Project } from "../data/projects";
+
+type Props = {
+  project: Project;
+};
+
+const { project } = Astro.props;
+const basePath = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+---
+
+<article class="project-card" data-project-card data-categories={project.categories.join("|")} data-search={`${project.title} ${project.description} ${project.categories.join(" ")} ${project.technologies.join(" ")}`.toLowerCase()}>
+  <a class="project-image-link" href={`${basePath}projects/${project.slug}/`} aria-label={`Read ${project.title} case study`}>
+    <img src={`${basePath}${project.image.slice(1)}`} alt={project.imageAlt} width="1400" height="788" loading="lazy" />
+  </a>
+  <div class="project-card-body">
+    <div class="project-card-heading">
+      <p class="eyebrow">{project.eyebrow}</p>
+      <h3>{project.title}</h3>
+    </div>
+    <p>{project.description}</p>
+    <ul class="tag-list" aria-label={`${project.title} categories`}>
+      {project.categories.map((category) => <li>{category}</li>)}
+    </ul>
+    <dl class="compact-metrics">
+      {project.metrics.slice(0, 2).map((metric) => (
+        <div>
+          <dt>{metric.label}</dt>
+          <dd>{metric.value}</dd>
+        </div>
+      ))}
+    </dl>
+    <div class="project-actions">
+      <a href={`${basePath}projects/${project.slug}/`}>Read case study</a>
+      <a href={project.githubUrl} target="_blank" rel="noreferrer">View repository</a>
+    </div>
+  </div>
+</article>

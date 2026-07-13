@@ -1,0 +1,140 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { projectCategories, projects } from "../data/projects";
+
+const basePath = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+---
+
+<BaseLayout
+  title="Data Science Portfolio | Reproducible Public-Data Work"
+  description="A Data Science portfolio featuring reproducible projects in Valencia mobility, geospatial equity, electricity forecasting and governed machine learning."
+>
+  <section class="hero" aria-labelledby="hero-title">
+    <img class="hero-media" src={`${basePath}assets/valencia-bike-equity-dashboard.png`} alt="" width="1600" height="900" fetchpriority="high" />
+    <div class="hero-scrim"></div>
+    <div class="shell hero-content">
+      <p class="eyebrow hero-eyebrow">Data science · Valencia</p>
+      <h1 id="hero-title">Data Science Portfolio</h1>
+      <p class="hero-copy">Reproducible case studies in urban analytics, operations research, forecasting and governed machine learning.</p>
+      <p class="hero-context">Data Science student at Universitat Politecnica de Valencia, seeking an internship in Valencia, hybrid or remote within Spain.</p>
+      <a class="primary-link" href="#projects">Explore the work</a>
+    </div>
+    <a class="hero-next" href="#projects">Four public case studies</a>
+  </section>
+
+  <section class="statement-section" aria-labelledby="statement-title">
+    <div class="shell statement-layout">
+      <div>
+        <p class="eyebrow">Working principle</p>
+        <h2 id="statement-title">Evidence before polish.</h2>
+      </div>
+      <div class="statement-copy">
+        <p>Each project has a defined question, documented data source, executable pipeline, real metrics and an explicit boundary around what the output does not prove.</p>
+        <p>These are portfolio studies over public data. They are not presented as work delivered for companies or as deployed production systems.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects-section" aria-labelledby="projects-title">
+    <div class="shell section-heading-row">
+      <div>
+        <p class="eyebrow">Selected work</p>
+        <h2 id="projects-title">Four systems, four analytical lenses.</h2>
+      </div>
+      <p class="section-intro">Filter by domain or search the methods and artifacts used in each case study.</p>
+    </div>
+
+    <div class="shell project-controls" aria-label="Project filters">
+      <label for="project-filter">
+        <span>Domain</span>
+        <select id="project-filter" name="project-filter">
+          {projectCategories.map((category) => <option value={category}>{category}</option>)}
+        </select>
+      </label>
+      <label for="project-search">
+        <span>Search</span>
+        <input id="project-search" name="project-search" type="search" placeholder="Forecasting, API, spatial..." autocomplete="off" />
+      </label>
+      <p id="project-count" aria-live="polite">4 case studies visible</p>
+    </div>
+
+    <div class="shell project-grid" id="project-grid">
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+    <p class="shell empty-state" id="empty-state" hidden>No project matches these filters.</p>
+  </section>
+
+  <section class="evidence-band" aria-labelledby="evidence-title">
+    <div class="shell evidence-layout">
+      <div>
+        <p class="eyebrow eyebrow-light">Evidence ledger</p>
+        <h2 id="evidence-title">What is visible in the repositories.</h2>
+        <p>Models are not only compared. Their inputs, validation design, uncertainty, operational assumptions and failure modes are surfaced as first-class artifacts.</p>
+      </div>
+      <div class="evidence-list">
+        <div>
+          <span class="evidence-number">01</span>
+          <h3>Provenance</h3>
+          <p>Public sources, versioned snapshots and data cards make the origin of each dataset inspectable.</p>
+        </div>
+        <div>
+          <span class="evidence-number">02</span>
+          <h3>Validation</h3>
+          <p>Temporal splits, leakage checks, quality controls and statistical comparisons are attached to the decision context.</p>
+        </div>
+        <div>
+          <span class="evidence-number">03</span>
+          <h3>Reproducibility</h3>
+          <p>Source code, tests, linting, generated reports and CI workflows are available in every project repository.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="practice" class="practice-section" aria-labelledby="practice-title">
+    <div class="shell section-heading-row">
+      <div>
+        <p class="eyebrow">Technical practice</p>
+        <h2 id="practice-title">A portfolio built around decisions.</h2>
+      </div>
+      <p class="section-intro">The tools change with the problem; the working habits stay constant.</p>
+    </div>
+    <div class="shell practice-grid">
+      <article>
+        <p class="practice-index">01</p>
+        <h3>Data foundations</h3>
+        <p>Python, pandas, SQL, DuckDB, validation checks, manifests and carefully scoped data transformations.</p>
+      </article>
+      <article>
+        <p class="practice-index">02</p>
+        <h3>Modeling and inference</h3>
+        <p>scikit-learn pipelines, calibrated probabilities, temporal backtesting, bootstrap intervals, spatial diagnostics and optimization.</p>
+      </article>
+      <article>
+        <p class="practice-index">03</p>
+        <h3>Communication and quality</h3>
+        <p>Plotly and Streamlit exploration, model and decision cards, pytest, Ruff, Docker where useful and GitHub Actions.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="closing-section" aria-labelledby="closing-title">
+    <div class="shell closing-layout">
+      <div>
+        <p class="eyebrow">Availability</p>
+        <h2 id="closing-title">Looking for a Data Science internship.</h2>
+      </div>
+      <div>
+        <p>Open to roles in data analysis, data science, machine learning, business intelligence, automation and junior data engineering in Valencia, hybrid or remote in Spain.</p>
+        <a class="primary-link primary-link-dark" href="https://github.com/0227lia" target="_blank" rel="noreferrer">Open GitHub profile</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    import "../scripts/portfolio";
+  </script>
+</BaseLayout>

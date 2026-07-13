@@ -1,0 +1,8 @@
+{
+  "name": "Data Science Portfolio",
+  "short_name": "DS Portfolio",
+  "start_url": "/data-science-portfolio/",
+  "display": "standalone",
+  "background_color": "#f4f7f2",
+  "theme_color": "#16342b"
+}

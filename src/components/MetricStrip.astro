@@ -1,0 +1,19 @@
+---
+import type { Metric } from "../data/projects";
+
+type Props = {
+  metrics: Metric[];
+  label?: string;
+};
+
+const { metrics, label = "Project metrics" } = Astro.props;
+---
+
+<dl class="metric-strip" aria-label={label}>
+  {metrics.map((metric) => (
+    <div>
+      <dt>{metric.label}</dt>
+      <dd>{metric.value}</dd>
+    </div>
+  ))}
+</dl>
