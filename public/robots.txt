@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://0227lia.github.io/data-science-portfolio/sitemap.xml

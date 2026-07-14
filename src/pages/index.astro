@@ -14,10 +14,10 @@ const linkedinUrl = "https://www.linkedin.com/in/0227lia/";
   description="A Data Science portfolio featuring reproducible work in Valencia mobility, data engineering, geospatial equity, electricity forecasting, NLP retrieval and governed machine learning."
 >
   <section class="hero" aria-labelledby="hero-title">
-    <img class="hero-media" src={`${basePath}assets/valencia-air-quality-observability-scorecard.png`} alt="" width="1600" height="900" fetchpriority="high" />
+    <img class="hero-media" src={`${basePath}assets/valencia-air-quality-observability-scorecard.png`} alt="" width="2682" height="1129" fetchpriority="high" decoding="async" />
     <div class="hero-scrim"></div>
     <div class="shell hero-content">
-      <p class="eyebrow hero-eyebrow">Data science portfolio · Universitat Politecnica de Valencia</p>
+      <p class="eyebrow hero-eyebrow">Data science portfolio · Universitat Politècnica de València</p>
       <h1 id="hero-title">Lianghao Zhan</h1>
       <p class="hero-copy">Reproducible public-data projects in data engineering, urban analytics, forecasting, NLP retrieval and machine learning.</p>
       <p class="hero-context">Data Science student seeking an internship in Valencia, hybrid or remote within Spain.</p>
@@ -56,14 +56,14 @@ const linkedinUrl = "https://www.linkedin.com/in/0227lia/";
       <p class="section-intro">Filter by domain or search the methods and artifacts used in each case study.</p>
     </div>
 
-    <div class="shell project-controls" aria-label="Project filters">
-      <label for="project-filter">
+    <div class="shell project-controls" role="group" aria-label="Project filters">
+      <label>
         <span>Domain</span>
         <select id="project-filter" name="project-filter">
           {projectCategories.map((category) => <option value={category}>{category}</option>)}
         </select>
       </label>
-      <label for="project-search">
+      <label>
         <span>Search</span>
         <input id="project-search" name="project-search" type="search" placeholder="Forecasting, API, spatial..." autocomplete="off" />
       </label>
@@ -91,7 +91,7 @@ const linkedinUrl = "https://www.linkedin.com/in/0227lia/";
             <th scope="col">Case study</th>
             <th scope="col">Decision lens</th>
             <th scope="col">Measured evidence</th>
-            <th scope="col">Technical artifacts</th>
+            <th scope="col">Reviewable artifacts</th>
             <th scope="col">Review</th>
           </tr>
         </thead>
@@ -100,7 +100,7 @@ const linkedinUrl = "https://www.linkedin.com/in/0227lia/";
             <tr
               data-project-row
               data-categories={project.categories.join("|")}
-              data-search={`${project.title} ${project.description} ${project.categories.join(" ")} ${project.technologies.join(" ")}`.toLowerCase()}
+              data-search={`${project.title} ${project.description} ${project.categories.join(" ")} ${project.technologies.join(" ")} ${project.artifacts.join(" ")}`.toLowerCase()}
             >
               <td>
                 <a class="table-project" href={`${basePath}projects/${project.slug}/`}>{project.title}</a>
@@ -111,7 +111,7 @@ const linkedinUrl = "https://www.linkedin.com/in/0227lia/";
                 <strong>{project.metrics[1].value}</strong>
                 <span>{project.metrics[1].label}</span>
               </td>
-              <td>{project.technologies.slice(0, 3).join(" · ")}</td>
+              <td>{project.artifacts.slice(0, 3).join(" · ")}</td>
               <td><a class="table-link" href={project.githubUrl} target="_blank" rel="noreferrer">Repository</a></td>
             </tr>
           ))}

@@ -4,30 +4,64 @@ import "../styles/global.css";
 type Props = {
   title?: string;
   description?: string;
+  noindex?: boolean;
+  socialImagePath?: string;
+  socialImageAlt?: string;
+  socialImageWidth?: number;
+  socialImageHeight?: number;
 };
 
 const {
-  title = "Data Science Portfolio | 0227lia",
-  description = "Reproducible data science case studies in data engineering, geospatial analysis, operations research, NLP retrieval, forecasting and machine learning."
-} = Astro.props;
+  title = "Lianghao Zhan | Data Science Portfolio",
+  description = "Reproducible data science case studies in data engineering, geospatial analysis, operations research, NLP retrieval, forecasting and machine learning.",
+  noindex = false,
+  socialImagePath = "/assets/valencia-air-quality-observability-scorecard.png",
+  socialImageAlt = "Valencia air-quality observability dashboard from Lianghao Zhan's data science portfolio.",
+  socialImageWidth = 2682,
+  socialImageHeight = 1129
+} = Astro.props as Props;
 
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const homeUrl = new URL(basePath, Astro.site);
 const socialLinks = ["https://github.com/0227lia", "https://www.linkedin.com/in/0227lia/"];
-const socialImage = new URL(`${basePath}assets/valencia-air-quality-observability-scorecard.png`, Astro.site);
+const socialImageUrl = new URL(`${basePath}${socialImagePath.replace(/^\//, "")}`, Astro.site);
+const personId = `${homeUrl.href}#person`;
+const websiteId = `${homeUrl.href}#website`;
 const structuredData = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Lianghao Zhan",
-  url: canonicalUrl.href,
-  sameAs: socialLinks,
-  affiliation: {
-    "@type": "CollegeOrUniversity",
-    name: "Universitat Politècnica de València"
-  },
-  knowsAbout: ["Data science", "Data engineering", "Machine learning", "SQL", "Data visualization"]
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: "Lianghao Zhan",
+      url: homeUrl.href,
+      sameAs: socialLinks,
+      affiliation: {
+        "@type": "CollegeOrUniversity",
+        name: "Universitat Politècnica de València"
+      },
+      knowsAbout: ["Data science", "Data engineering", "Machine learning", "SQL", "Data visualization"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: homeUrl.href,
+      name: "Lianghao Zhan | Data Science Portfolio",
+      author: { "@id": personId }
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${canonicalUrl.href}#webpage`,
+      url: canonicalUrl.href,
+      name: title,
+      description,
+      isPartOf: { "@id": websiteId },
+      author: { "@id": personId }
+    }
+  ]
 });
 ---
 
@@ -37,15 +71,27 @@ const structuredData = JSON.stringify({
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#16342b" />
+    <meta name="author" content="Lianghao Zhan" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#102f43" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonicalUrl} />
     <link rel="manifest" href={`${basePath}site.webmanifest`} />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Lianghao Zhan | Data Science Portfolio" />
+    <meta property="og:locale" content="en_GB" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content={socialImage} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:alt" content={socialImageAlt} />
+    <meta property="og:image:width" content={String(socialImageWidth)} />
+    <meta property="og:image:height" content={String(socialImageHeight)} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
+    <meta name="twitter:image:alt" content={socialImageAlt} />
     <script type="application/ld+json" is:inline set:html={structuredData}></script>
     <title>{title}</title>
   </head>

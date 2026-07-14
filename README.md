@@ -1,17 +1,18 @@
 # Data Science Portfolio
 
-Static portfolio for Lianghao Zhan, a Data Science student at Universitat Politecnica de Valencia. It presents six reproducible, public case studies covering data engineering, geospatial analysis, operations research, forecasting, governed machine learning, and NLP retrieval.
+Static portfolio for Lianghao Zhan, a Data Science student at Universitat Politècnica de València. It presents six reproducible, public case studies covering data engineering, geospatial analysis, operations research, forecasting, governed machine learning, and NLP retrieval.
 
 This site deliberately distinguishes observed results from modeled scenarios. It does not claim commercial deployments or company work.
 
 ## Stack
 
-- Astro 5 and TypeScript
+- Astro 7 and TypeScript
 - Static HTML and modern CSS
 - Structured project data for reusable case-study pages
 - Filterable project cards and a synchronized evidence index
+- Project-specific architecture flows, technical artifacts and explicit limitations
 - SEO metadata and structured `Person` data without publishing private contact details
-- GitHub Actions for type checking and production builds
+- GitHub Actions for type checking, production builds and GitHub Pages deployment
 
 ## Local setup
 
@@ -27,11 +28,12 @@ Open `http://localhost:4321/data-science-portfolio/`.
 ```powershell
 pnpm check
 pnpm build
+pnpm audit
 ```
 
 ## Deployment
 
-The configuration targets GitHub Pages at `https://0227lia.github.io/data-science-portfolio/`. A production deployment workflow is intentionally not enabled until the public site is reviewed.
+The site is deployed through the GitHub Pages workflow to `https://0227lia.github.io/data-science-portfolio/`. Every push to `main` rebuilds the static site before publishing it.
 
 ## Content integrity
 

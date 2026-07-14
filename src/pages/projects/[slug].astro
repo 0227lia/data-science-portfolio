@@ -16,7 +16,14 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
   : `${import.meta.env.BASE_URL}/`;
 ---
 
-<BaseLayout title={`${project.title} | Data Science Portfolio`} description={project.description}>
+<BaseLayout
+  title={`${project.title} | Data Science Portfolio`}
+  description={project.description}
+  socialImagePath={project.image}
+  socialImageAlt={project.imageAlt}
+  socialImageWidth={project.imageWidth}
+  socialImageHeight={project.imageHeight}
+>
   <section class="case-hero" aria-labelledby="case-title">
     <div class="shell case-hero-grid">
       <div class="case-hero-copy">
@@ -29,13 +36,14 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
           <a class="secondary-link" href={project.sourceUrl} target="_blank" rel="noreferrer">Open data source</a>
         </div>
       </div>
-      <img class="case-hero-image" src={`${basePath}${project.image.slice(1)}`} alt={project.imageAlt} width="1400" height="788" fetchpriority="high" />
+      <img class="case-hero-image" src={`${basePath}${project.image.slice(1)}`} alt={project.imageAlt} width={project.imageWidth} height={project.imageHeight} fetchpriority="high" decoding="async" />
     </div>
   </section>
 
-  <section class="case-metrics-section">
+  <section class="case-metrics-section" aria-labelledby="metrics-title">
     <div class="shell">
-      <MetricStrip metrics={project.metrics} label={`${project.title} key metrics`} />
+      <h2 id="metrics-title" class="visually-hidden">Measured project results</h2>
+      <MetricStrip metrics={project.metrics} />
       <p class="metrics-note">Metrics come from the committed reproducible run in the linked repository. Their interpretation and limits are documented below.</p>
     </div>
   </section>
@@ -43,6 +51,7 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
   <section class="case-content" aria-labelledby="case-question-title">
     <div class="shell case-grid">
       <aside class="case-sidebar" aria-label="Case study sections">
+        <a href="#architecture">Architecture</a>
         <a href="#question">Question</a>
         <a href="#approach">Approach</a>
         <a href="#evidence">Evidence</a>
@@ -50,6 +59,32 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
         <a href="#limits">Limits</a>
       </aside>
       <div class="case-sections">
+        <section id="architecture">
+          <p class="eyebrow">Architecture</p>
+          <h2>System flow and reviewable outputs.</h2>
+          <ol class="architecture-flow" aria-label={`${project.title} system flow`}>
+            {project.architecture.map((stage, index) => (
+              <li>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <p>{stage}</p>
+              </li>
+            ))}
+          </ol>
+          <div class="artifact-summary">
+            <div>
+              <h3>Reviewable artifacts</h3>
+              <ul class="artifact-list">
+                {project.artifacts.map((artifact) => <li>{artifact}</li>)}
+              </ul>
+            </div>
+            <div>
+              <h3>Technology stack</h3>
+              <ul class="stack-list">
+                {project.technologies.map((technology) => <li>{technology}</li>)}
+              </ul>
+            </div>
+          </div>
+        </section>
         <section id="question">
           <p class="eyebrow">Question</p>
           <h2 id="case-question-title">What the project investigates.</h2>

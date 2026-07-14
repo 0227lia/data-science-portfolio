@@ -11,11 +11,15 @@ export type Project = {
   summary: string;
   image: string;
   imageAlt: string;
+  imageWidth: number;
+  imageHeight: number;
   githubUrl: string;
   sourceName: string;
   sourceUrl: string;
   categories: string[];
   technologies: string[];
+  architecture: string[];
+  artifacts: string[];
   metrics: Metric[];
   challenge: string;
   approach: string[];
@@ -35,12 +39,22 @@ export const projects: Project[] = [
       "Open municipal data, spatial accessibility, multi-criteria robustness and counterfactual planning in one transparent workflow.",
     image: "/assets/valencia-bike-equity-dashboard.png",
     imageAlt: "Static equity decision dashboard for bicycle parking in Valencia.",
+    imageWidth: 2827,
+    imageHeight: 2059,
     githubUrl: "https://github.com/0227lia/valencia-bike-equity-analysis",
     sourceName: "Valencia Open Data",
     sourceUrl:
       "https://opendata.vlci.valencia.es/dataset/aparcaments-bicicletes-aparcamientos-bicicletas",
     categories: ["Geospatial", "Urban analytics", "Decision support"],
     technologies: ["Python", "Shapely", "pyproj", "Plotly", "Streamlit", "pytest"],
+    architecture: [
+      "Versioned municipal snapshots",
+      "Schema and CRS validation",
+      "Projected accessibility analysis",
+      "MCDA robustness and Moran diagnostics",
+      "Counterfactual planning artifacts"
+    ],
+    artifacts: ["Offline snapshot", "Spatial diagnostics", "MCDA simulation", "Streamlit dashboard", "Tests and CI"],
     metrics: [
       { value: "4,316", label: "parking points processed" },
       { value: "10,000", label: "MCDA weight scenarios" },
@@ -82,11 +96,21 @@ export const projects: Project[] = [
       "Turns a static bike-sharing snapshot into an auditable operations review, while clearly separating simulation from prediction.",
     image: "/assets/valenbisi-operations-dashboard.png",
     imageAlt: "Static operations dashboard for the Valenbisi snapshot analysis.",
+    imageWidth: 2814,
+    imageHeight: 1974,
     githubUrl: "https://github.com/0227lia/valenbisi-pulse",
     sourceName: "CityBikes API / versioned local sample",
     sourceUrl: "https://api.citybik.es/v2/networks/valenbisi",
     categories: ["Operations research", "Mobility", "Optimization"],
     technologies: ["Python", "SciPy", "scikit-learn", "KMeans", "Plotly", "Streamlit"],
+    architecture: [
+      "Versioned CityBikes snapshot",
+      "Inventory and geospatial validation",
+      "k-NN pressure and KMeans zones",
+      "Minimum-cost LP rebalancing",
+      "Stress scenarios and dashboard"
+    ],
+    artifacts: ["Data validation", "Risk scoring", "Linear program", "Stress tests", "Streamlit dashboard", "Tests and CI"],
     metrics: [
       { value: "30", label: "stations in reproducible sample" },
       { value: "21", label: "critical stations at base thresholds" },
@@ -128,11 +152,22 @@ export const projects: Project[] = [
       "A full data-to-forecast workflow designed to make temporal assumptions, uncertainty and performance comparisons inspectable.",
     image: "/assets/electricity-forecast-dashboard.png",
     imageAlt: "Static forecast control center for electricity-demand analysis.",
+    imageWidth: 2545,
+    imageHeight: 2052,
     githubUrl: "https://github.com/0227lia/spain-electricity-demand-platform",
     sourceName: "REE API, Open-Meteo ERA5 and Spanish holidays",
     sourceUrl: "https://www.ree.es/en/datos/apidata",
     categories: ["Forecasting", "Data engineering", "Energy"],
     technologies: ["Python", "DuckDB", "SQL", "scikit-learn", "Plotly", "Streamlit"],
+    architecture: [
+      "REE, ERA5 and holiday sources",
+      "Manifested ingestion",
+      "DuckDB analytical marts",
+      "Leakage-safe temporal features",
+      "Expanding-window backtests",
+      "Intervals and dashboard"
+    ],
+    artifacts: ["ETL manifests", "SQL marts", "Temporal backtests", "Prediction intervals", "Streamlit dashboard", "Tests and CI"],
     metrics: [
       { value: "2,557", label: "daily demand observations" },
       { value: "12", label: "expanding backtest windows" },
@@ -149,8 +184,8 @@ export const projects: Project[] = [
       "Estimate bias correction and conformal interval widths from out-of-sample residuals before touching 2025."
     ],
     evidence: [
-      "The selected weather-informed HGB model records 12.546 MWh test MAE in 2025 versus 32.816 MWh for the 7-day seasonal naive baseline.",
-      "A weekly block bootstrap estimates a 20.270 MWh MAE advantage; the reported interval is tied to this specific sample.",
+      "The selected weather-informed HGB model records 12,546 MWh test MAE in 2025 versus 32,816 MWh for the 7-day seasonal naive baseline.",
+      "A weekly block bootstrap estimates a 20,270 MWh MAE advantage; the reported interval is tied to this specific sample.",
       "The 80% interval covers only 72.1% of the untouched test, a deliberately visible calibration limitation."
     ],
     quality: [
@@ -174,11 +209,22 @@ export const projects: Project[] = [
       "Focuses on responsible model selection: accuracy is reported alongside feature availability, calibration, uncertainty and drift diagnostics.",
     image: "/assets/ecommerce-governance-dashboard.png",
     imageAlt: "Static governance dashboard for the e-commerce conversion model.",
+    imageWidth: 2499,
+    imageHeight: 1786,
     githubUrl: "https://github.com/0227lia/ecommerce-conversion-ml",
     sourceName: "UCI Online Shoppers Purchasing Intention Dataset",
     sourceUrl: "https://archive.ics.uci.edu/dataset/468/online+shoppers+purchasing+intention+dataset",
     categories: ["Machine learning", "MLOps", "Classification"],
     technologies: ["Python", "scikit-learn", "FastAPI", "Pydantic", "Docker", "Streamlit"],
+    architecture: [
+      "Versioned UCI dataset",
+      "Schema and split controls",
+      "Pipeline model comparison",
+      "Feature-availability ablation",
+      "Calibration and cost policy",
+      "Monitoring, API and dashboard"
+    ],
+    artifacts: ["Model pipelines", "Ablation study", "Calibration", "Drift monitoring", "FastAPI", "Docker", "Tests and CI"],
     metrics: [
       { value: "12,330", label: "public e-commerce sessions" },
       { value: "0.7602", label: "deployment-safe ROC-AUC" },
@@ -220,11 +266,22 @@ export const projects: Project[] = [
       "Combines lexical and latent-semantic signals to make multilingual municipal metadata easier to inspect without hiding the ranking trade-offs.",
     image: "/assets/valencia-open-data-retrieval-scorecard.png",
     imageAlt: "Benchmark scorecard comparing lexical, semantic and hybrid retrieval strategies.",
+    imageWidth: 2362,
+    imageHeight: 758,
     githubUrl: "https://github.com/0227lia/valencia-open-data-navigator",
     sourceName: "Valencia Open Data CKAN catalog",
     sourceUrl: "https://opendata.vlci.valencia.es/api/3/action/package_search",
     categories: ["NLP", "Information retrieval", "Open data"],
     technologies: ["Python", "scikit-learn", "FastAPI", "Streamlit", "TF-IDF", "pytest"],
+    architecture: [
+      "Versioned CKAN snapshot",
+      "Metadata quality controls",
+      "Spanish and Valencian normalization",
+      "BM25, LSA and rank fusion",
+      "Versioned retrieval benchmark",
+      "FastAPI and Streamlit"
+    ],
+    artifacts: ["Catalog snapshot", "BM25 and LSA", "RRF and MMR", "Benchmark suite", "FastAPI", "Tests and CI"],
     metrics: [
       { value: "296", label: "datasets in versioned snapshot" },
       { value: "20", label: "manual relevance queries" },
@@ -266,11 +323,22 @@ export const projects: Project[] = [
       "Turns a large, wide municipal CSV into a documented analytical warehouse without hiding coverage gaps or range-screen warnings.",
     image: "/assets/valencia-air-quality-observability-scorecard.png",
     imageAlt: "Observability scorecard with station-hour availability and data-quality controls.",
+    imageWidth: 2682,
+    imageHeight: 1129,
     githubUrl: "https://github.com/0227lia/valencia-air-quality-lakehouse",
     sourceName: "Valencia Open Data hourly air-quality distribution",
     sourceUrl: "https://opendata.vlci.valencia.es/dataset/hourly-air-quality-data-since-2016",
     categories: ["Data engineering", "SQL", "Data quality"],
     technologies: ["Python", "DuckDB", "SQL", "FastAPI", "Streamlit", "Docker"],
+    architecture: [
+      "Official 47.9 MB CSV",
+      "Source contract and SHA-256 manifest",
+      "Typed DuckDB staging",
+      "Dimensions and 6.04M fact rows",
+      "Observability SQL marts",
+      "API and dashboard"
+    ],
+    artifacts: ["Source contract", "Dimensional model", "SQL quality marts", "FastAPI", "Docker", "Tests and CI"],
     metrics: [
       { value: "449k", label: "station-hour rows in snapshot" },
       { value: "6.04M", label: "long-format measurements" },

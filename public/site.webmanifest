@@ -3,6 +3,6 @@
   "short_name": "DS Portfolio",
   "start_url": "/data-science-portfolio/",
   "display": "standalone",
-  "background_color": "#f4f7f2",
-  "theme_color": "#16342b"
+  "background_color": "#f6f5f1",
+  "theme_color": "#102f43"
 }
