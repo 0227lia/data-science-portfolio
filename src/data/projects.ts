@@ -39,8 +39,8 @@ export const projects: Project[] = [
       "Open municipal data, spatial accessibility, multi-criteria robustness and counterfactual planning in one transparent workflow.",
     image: "/assets/valencia-bike-equity-dashboard.png",
     imageAlt: "Static equity decision dashboard for bicycle parking in Valencia.",
-    imageWidth: 2827,
-    imageHeight: 2059,
+    imageWidth: 2908,
+    imageHeight: 1609,
     githubUrl: "https://github.com/0227lia/valencia-bike-equity-analysis",
     sourceName: "Valencia Open Data",
     sourceUrl:
@@ -96,8 +96,8 @@ export const projects: Project[] = [
       "Turns a static bike-sharing snapshot into an auditable operations review, while clearly separating simulation from prediction.",
     image: "/assets/valenbisi-operations-dashboard.png",
     imageAlt: "Static operations dashboard for the Valenbisi snapshot analysis.",
-    imageWidth: 2814,
-    imageHeight: 1974,
+    imageWidth: 2925,
+    imageHeight: 1609,
     githubUrl: "https://github.com/0227lia/valenbisi-pulse",
     sourceName: "CityBikes API / versioned local sample",
     sourceUrl: "https://api.citybik.es/v2/networks/valenbisi",
@@ -152,8 +152,8 @@ export const projects: Project[] = [
       "A full data-to-forecast workflow designed to make temporal assumptions, uncertainty and performance comparisons inspectable.",
     image: "/assets/electricity-forecast-dashboard.png",
     imageAlt: "Static forecast control center for electricity-demand analysis.",
-    imageWidth: 2545,
-    imageHeight: 2052,
+    imageWidth: 2794,
+    imageHeight: 1525,
     githubUrl: "https://github.com/0227lia/spain-electricity-demand-platform",
     sourceName: "REE API, Open-Meteo ERA5 and Spanish holidays",
     sourceUrl: "https://www.ree.es/en/datos/apidata",
@@ -171,8 +171,8 @@ export const projects: Project[] = [
     metrics: [
       { value: "2,557", label: "daily demand observations" },
       { value: "12", label: "expanding backtest windows" },
-      { value: "61.8%", label: "test MAE reduction vs 7-day baseline" },
-      { value: "94.0%", label: "observed 95% interval coverage" }
+      { value: "62.0%", label: "test MAE reduction vs 7-day baseline" },
+      { value: "94.2%", label: "observed 95% interval coverage" }
     ],
     challenge:
       "The objective is a one-step daily forecast that compares simple seasonal baselines with feature-based models while protecting the final year from tuning and calibration decisions.",
@@ -184,9 +184,9 @@ export const projects: Project[] = [
       "Estimate bias correction and conformal interval widths from out-of-sample residuals before touching 2025."
     ],
     evidence: [
-      "The selected weather-informed HGB model records 12,546 MWh test MAE in 2025 versus 32,816 MWh for the 7-day seasonal naive baseline.",
-      "A weekly block bootstrap estimates a 20,270 MWh MAE advantage; the reported interval is tied to this specific sample.",
-      "The 80% interval covers only 72.1% of the untouched test, a deliberately visible calibration limitation."
+      "The selected weather-informed HGB model records 12,455 MWh test MAE in 2025 versus 32,816 MWh for the 7-day seasonal naive baseline.",
+      "A weekly block bootstrap estimates a 20,361 MWh MAE advantage; the reported interval is tied to this specific sample.",
+      "The 80% interval covers only 71.5% of the untouched test, a deliberately visible calibration limitation."
     ],
     quality: [
       "Quality checks cover continuity, duplicates, weather coverage and feature leakage.",
@@ -209,8 +209,8 @@ export const projects: Project[] = [
       "Focuses on responsible model selection: accuracy is reported alongside feature availability, calibration, uncertainty and drift diagnostics.",
     image: "/assets/ecommerce-governance-dashboard.png",
     imageAlt: "Static governance dashboard for the e-commerce conversion model.",
-    imageWidth: 2499,
-    imageHeight: 1786,
+    imageWidth: 2571,
+    imageHeight: 1419,
     githubUrl: "https://github.com/0227lia/ecommerce-conversion-ml",
     sourceName: "UCI Online Shoppers Purchasing Intention Dataset",
     sourceUrl: "https://archive.ics.uci.edu/dataset/468/online+shoppers+purchasing+intention+dataset",
@@ -266,8 +266,8 @@ export const projects: Project[] = [
       "Combines lexical and latent-semantic signals to make multilingual municipal metadata easier to inspect without hiding the ranking trade-offs.",
     image: "/assets/valencia-open-data-retrieval-scorecard.png",
     imageAlt: "Benchmark scorecard comparing lexical, semantic and hybrid retrieval strategies.",
-    imageWidth: 2362,
-    imageHeight: 758,
+    imageWidth: 2729,
+    imageHeight: 1050,
     githubUrl: "https://github.com/0227lia/valencia-open-data-navigator",
     sourceName: "Valencia Open Data CKAN catalog",
     sourceUrl: "https://opendata.vlci.valencia.es/api/3/action/package_search",
@@ -323,8 +323,8 @@ export const projects: Project[] = [
       "Turns a large, wide municipal CSV into a documented analytical warehouse without hiding coverage gaps or range-screen warnings.",
     image: "/assets/valencia-air-quality-observability-scorecard.png",
     imageAlt: "Observability scorecard with station-hour availability and data-quality controls.",
-    imageWidth: 2682,
-    imageHeight: 1129,
+    imageWidth: 2775,
+    imageHeight: 1244,
     githubUrl: "https://github.com/0227lia/valencia-air-quality-lakehouse",
     sourceName: "Valencia Open Data hourly air-quality distribution",
     sourceUrl: "https://opendata.vlci.valencia.es/dataset/hourly-air-quality-data-since-2016",
