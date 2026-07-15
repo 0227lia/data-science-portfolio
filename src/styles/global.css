@@ -433,18 +433,18 @@ nav a {
 .project-image-link {
   display: block;
   border-bottom: 1px solid var(--line);
-  background: #d8e6dc;
+  background: #e9efee;
 }
 
 .project-image-link img {
   width: 100%;
   aspect-ratio: 16 / 8.2;
-  object-fit: cover;
-  transition: transform 180ms ease;
+  object-fit: contain;
+  transition: filter 180ms ease;
 }
 
 .project-image-link:hover img {
-  transform: scale(1.02);
+  filter: saturate(1.04) contrast(1.01);
 }
 
 .project-card-body {
